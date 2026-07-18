@@ -1,0 +1,39 @@
+# macOS
+.DS_Store
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# JavaScript
+node_modules/
+
+# Build, coverage, and temporary output
+build/
+dist/
+coverage/
+.coverage
+*.log
+*.tmp
+
+# Local Codex state and generated caches
+.codex/
+.agents/.cache/
+plugins/**/.cache/

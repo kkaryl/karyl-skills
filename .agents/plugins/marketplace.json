@@ -1,0 +1,32 @@
+{
+  "name": "karyl-skills",
+  "interface": {
+    "displayName": "karyl skills"
+  },
+  "plugins": [
+    {
+      "name": "karyl-engineering",
+      "source": {
+        "source": "local",
+        "path": "./plugins/engineering"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "engineering"
+    },
+    {
+      "name": "karyl-productivity",
+      "source": {
+        "source": "local",
+        "path": "./plugins/productivity"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "productivity"
+    }
+  ]
+}

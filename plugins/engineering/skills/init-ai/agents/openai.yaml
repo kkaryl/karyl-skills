@@ -1,0 +1,4 @@
+interface:
+  display_name: "Init AI"
+  short_description: "Initialize shared AI instruction files"
+  default_prompt: "Use $init-ai to initialize AGENTS.md and link CLAUDE.md to it."

@@ -1,0 +1,18 @@
+{
+  "name": "karyl-productivity",
+  "version": "0.1.0",
+  "description": "Personal skills for planning and getting work done.",
+  "author": {
+    "name": "Local developer"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Productivity",
+    "shortDescription": "Skills for planning, focus, and communication.",
+    "longDescription": "A personal collection of productivity skills for planning work, organizing information, communicating clearly, and staying focused.",
+    "developerName": "Local developer",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Help me choose a productivity skill for this task."
+  }
+}
