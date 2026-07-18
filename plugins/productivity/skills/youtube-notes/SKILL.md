@@ -1,6 +1,6 @@
 ---
 name: youtube-notes
-description: Learn from a YouTube video with the user, produce a source-grounded summary, and optionally save concise Markdown notes with useful reference links. Use when a user provides a YouTube URL or names a YouTube video and asks to summarize it, extract its lessons, explain its stages or tools, refine the findings through follow-up corrections, or create a reusable notes file.
+description: Learn from a YouTube video with the user, produce a source-grounded summary, and optionally save concise Markdown notes with useful reference links while excluding ads and sponsor content. Use when a user provides a YouTube URL or names a YouTube video and asks to summarize it, extract its lessons, explain its stages or tools, refine the findings through follow-up corrections, or create a reusable notes file.
 ---
 
 # YouTube Notes
@@ -21,6 +21,19 @@ Turn a YouTube video into accurate, practical learning notes. Treat the process 
 ### 2. Inspect the video and its sources
 
 Browse because video pages and linked resources can change.
+
+Exclude promotional content before extracting any lessons. Skip:
+
+- YouTube pre-roll, mid-roll, and post-roll ads
+- In-video sponsor reads and sponsored demonstrations
+- Chapters labeled sponsor, advertisement, partner, or promotion
+- Affiliate offers, discount codes, product pitches, and paid endorsements
+- Newsletter, community, course, merchandise, and membership promotions
+- Requests to like, subscribe, follow, donate, or support the channel
+
+Use cues such as `Sponsored` overlays, ad controls, abrupt topic changes, sponsor chapter labels, discount codes, and promotional calls to action. When controlling the player, skip an ad when possible and resume at the educational content.
+
+Do not include promotional segments in the summary, learning model, tool list, references, screenshots, or saved notes. Do not mistake a sponsor's product for a tool recommended by the lesson. Include a sponsored product only when the user explicitly asks about sponsors, or when the same product is substantively taught outside the promotional segment. Label that distinction clearly.
 
 Collect the strongest available evidence:
 
@@ -122,6 +135,8 @@ Check that:
 - The notes answer the user's requested focus.
 - Every important tool name and link is accurate.
 - User corrections are included.
+- Ads, sponsor segments, affiliate pitches, and channel promotions are excluded unless requested.
+- A sponsored product is not presented as a lesson tool without independent educational context.
 - Video-specific claims are not confused with current documentation.
 - Commands are copied accurately.
 - No timestamps remain unless requested.
