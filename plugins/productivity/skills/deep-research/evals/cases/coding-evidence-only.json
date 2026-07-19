@@ -1,0 +1,15 @@
+{
+  "case_id": "coding-topic-evidence-only",
+  "prompt": "Use $deep-research to explain the current best practices and tradeoffs for reproducible Python dependency management.",
+  "expected_before_confirmation": [
+    "Propose a focused brief covering current tools, standards, tradeoffs, failure modes, and migration considerations.",
+    "Wait for confirmation before research."
+  ],
+  "expected_after_confirmation": [
+    "Use official standards, tool documentation, release notes, and primary repositories.",
+    "Remain evidence-based and read-only.",
+    "Do not install tools, run copied commands, clone unknown repositories, or benchmark packages.",
+    "Mark synthesized code or commands as untested unless safely verified in an existing environment.",
+    "Use adaptive technical modules rather than person-oriented sections."
+  ]
+}

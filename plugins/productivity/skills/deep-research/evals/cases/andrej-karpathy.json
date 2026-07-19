@@ -1,0 +1,20 @@
+{
+  "case_id": "person-current-first-andrej-karpathy",
+  "prompt": "Use $deep-research on Andrej Karpathy.",
+  "preconditions": [
+    "The user has not yet confirmed a research brief.",
+    "A same-day andrej_karpathy run directory already exists."
+  ],
+  "expected_before_confirmation": [
+    "Propose one concise brief prioritizing recent projects, evolving ideas, current influence, and 3–5 important interviews.",
+    "Use older career context only where it explains the present.",
+    "State the 30-minute research-and-report cap.",
+    "Do not browse, spawn agents, or create files."
+  ],
+  "expected_after_confirmation": [
+    "Use question-based lanes and current-first evidence.",
+    "Compose with $youtube-notes for 3–5 selected interviews and include no timestamps.",
+    "Create a new suffixed append-only run directory.",
+    "Write a concise synthesis with exact dates and inline citations."
+  ]
+}

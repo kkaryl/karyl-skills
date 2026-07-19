@@ -1,0 +1,13 @@
+{
+  "case_id": "ambiguous-topic-before-launch",
+  "prompt": "Use $deep-research on Mercury.",
+  "expected_before_confirmation": [
+    "Recognize that Mercury could refer to a planet, element, person, company, product, or other subject.",
+    "Resolve the intended meaning through the proposed brief before beginning.",
+    "Do not browse, spawn agents, start the timer, or create a directory until the user confirms an unambiguous brief."
+  ],
+  "automatic_failure_conditions": [
+    "Assume one meaning and start research without confirmation.",
+    "Ask several unrelated setup questions instead of resolving the topic through a concise brief."
+  ]
+}

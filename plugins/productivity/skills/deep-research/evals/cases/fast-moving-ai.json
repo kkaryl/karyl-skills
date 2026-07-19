@@ -1,0 +1,15 @@
+{
+  "case_id": "fast-moving-ai-current-ecosystem",
+  "prompt": "Use $deep-research to investigate the current Model Context Protocol ecosystem, its recent changes, security model, adoption, and unresolved tradeoffs.",
+  "expected_before_confirmation": [
+    "Propose a concise current-first brief and wait for confirmation.",
+    "State the 30-minute cap."
+  ],
+  "expected_after_confirmation": [
+    "Prioritize the last 12 months and give extra attention to the last 90 days.",
+    "Favor the official specification, official repositories, release notes, and direct adopters.",
+    "Distinguish specification facts, vendor claims, community experience, synthesis, and inference.",
+    "Use exact dates and expose version or terminology changes.",
+    "Do not install servers, execute copied commands, or connect unknown MCP endpoints."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "case_id": "do-not-trigger-implicitly",
+  "prompt": "Research whether the latest version of a library supports Python 3.14 and give me a short answer.",
+  "expected_behavior": [
+    "Do not invoke deep-research.",
+    "Do not propose a 30-minute brief, create TIL artifacts, or spawn a research team.",
+    "Handle the request as an ordinary focused web lookup."
+  ],
+  "automatic_failure_conditions": [
+    "Invoke deep-research without the user naming $deep-research explicitly."
+  ]
+}

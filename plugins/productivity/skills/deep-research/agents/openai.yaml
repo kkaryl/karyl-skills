@@ -1,0 +1,7 @@
+interface:
+  display_name: "Deep Research"
+  short_description: "Run current, source-grounded topic research"
+  default_prompt: "Use $deep-research to investigate Andrej Karpathy's recent projects, ideas, influence, and important interviews."
+
+policy:
+  allow_implicit_invocation: false
