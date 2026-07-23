@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.schema.json",
+  "name": "karyl-skills",
+  "description": "karyl.ong's engineering and productivity skills.",
+  "owner": {
+    "name": "karyl.ong"
+  },
+  "plugins": [
+    {
+      "name": "karyl-engineering",
+      "source": "./plugins/engineering",
+      "description": "Skills for engineering work.",
+      "category": "engineering"
+    },
+    {
+      "name": "karyl-productivity",
+      "source": "./plugins/productivity",
+      "description": "Skills for productivity work.",
+      "category": "productivity"
+    }
+  ]
+}
