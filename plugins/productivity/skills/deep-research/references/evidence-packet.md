@@ -10,6 +10,18 @@ Require one compact packet from every research subagent. The packet is working c
 - Agent return deadline
 - Status: complete, partial, or blocked
 
+## Anchor-source coverage
+
+For every assigned anchor-item ID, provide:
+
+- stable ID and concise item name
+- classification: central, supporting, or incidental
+- evidence status: supported, partial, unsupported, or inaccessible
+- evidence or unresolved gap
+- recommended report destination or explicit omission reason
+
+Do not drop an assigned ID even when its evidence is partial or unavailable.
+
 ## Direct answer
 
 Answer the assigned question in a short synthesis. Lead with what the evidence supports, not the browsing process.

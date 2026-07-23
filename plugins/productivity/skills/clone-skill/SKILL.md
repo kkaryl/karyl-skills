@@ -13,12 +13,12 @@ Require the marketplace repository to have an initial commit on `main`. Run the 
 
 ```bash
 python3 <clone-skill-root>/scripts/setup_local_skills.py \
-  --marketplace-root /path/to/skills
+  --marketplace-root /path/to/karyl-skills
 ```
 
 Resolve `<clone-skill-root>` to the directory containing this `SKILL.md`; do not assume the user's current directory contains the bundled scripts.
 
-The helper creates a sibling `skills-local` worktree by default and installs a local pre-push guard. Never overwrite an existing worktree, branch, or pre-push hook. If one exists, inspect it and resolve the conflict with the user.
+The helper creates a sibling `karyl-skills-local` worktree by default and installs a local pre-push guard. Never overwrite an existing worktree, branch, or pre-push hook. If one exists, inspect it and resolve the conflict with the user.
 
 ## Choose the clone target
 
@@ -35,7 +35,7 @@ python3 <clone-skill-root>/scripts/clone_skill.py \
   https://github.com/owner/repository \
   --collection engineering \
   --skill-path path/to/skill \
-  --marketplace-root /path/to/skills-local
+  --marketplace-root /path/to/karyl-skills-local
 ```
 
 The helper requires a clean `local-skills` branch, rebases it onto local `main`, validates the upstream skill, records a commit-pinned GitHub link in `metadata.source`, copies the skill, validates the result, and creates a commit with the `Local-Skill: true` trailer.

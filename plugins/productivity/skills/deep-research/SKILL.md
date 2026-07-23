@@ -19,6 +19,8 @@ Adapt the content to the topic. Do not expose paths or internal orchestration me
 
 After confirmation, run without pausing for more choices unless continuing would be unsafe or impossible.
 
+When the user supplies a source or describes one as important, inspiring, surprising, or central, treat it as an anchor source. The confirmed brief names priorities but is not an exhaustive list of the anchor source's important ideas. After confirmation, inspect the anchor source before finalizing research lanes.
+
 ## 2. Establish the run
 
 Start the 30-minute wall-clock budget immediately after confirmation. Record the local start time and hard deadline. The budget includes planning, research, media analysis, verification, synthesis, report writing, and report validation.
@@ -45,6 +47,16 @@ Use a dynamic recency window:
 
 State the effective window in the report. Distinguish newly published information, ongoing work, older foundational context, and weak signals about future direction. Anchor current-state claims to exact dates.
 
+For every user-selected anchor source, extract a compact coverage map before launching lanes:
+
+- main thesis
+- 3–7 most distinctive ideas, named patterns, or conceptual frameworks by default, plus any additional idea needed to represent the anchor's thesis or answer the confirmed brief
+- projects, artifacts, demonstrations, and examples
+- claims that update or contradict the current understanding
+- ideas especially relevant to the user's stated interest or working context
+
+Classify each item as central, supporting, or incidental. Central means necessary to represent the anchor's thesis or answer the confirmed brief; supporting adds explanation or evidence; incidental is interesting but unnecessary to either. Give every item a stable ID and record its classification, owner, evidence status, and planned report destination or omission reason. Every central item must later appear substantively in the report or be named in `Coverage and limitations` with the reason it was omitted.
+
 Split the brief into question-based lanes, not website-based lanes. Adapt the lanes to the topic. Typical lanes include:
 
 - current state, recent developments, and credible news
@@ -63,6 +75,7 @@ Use available concurrency for bounded research agents. Only the main orchestrato
 Before prompting subagents, read [evidence-packet.md](references/evidence-packet.md). Require every subagent to return that structured packet. Give each agent:
 
 - one explicit research question
+- any central anchor-source items it owns
 - the confirmed brief and recency window
 - the source and browsing policy from this skill
 - the absolute deadline and a shorter return deadline
@@ -104,11 +117,17 @@ For technical topics, remain evidence-based and read-only. Inspect documentation
 
 Do not impose a source-count quota. Require a direct primary source for ordinary important claims when available, and seek independent corroboration for consequential, disputed, surprising, or rapidly changing claims. Expose meaningful missing corroboration.
 
+Do not use lack of independent adoption evidence to demote a distinctive first-party idea. A primary source is sufficient to establish what its author proposed, how it works, and how it connects to the author's worldview. Require independent evidence for claims about adoption, effectiveness, originality, or influence, not for analyzing the idea itself.
+
+Evaluate projects, workflows, design patterns, conceptual models, and shipped products as separate forms of contribution. Do not privilege repositories, formal organizations, recent job news, or easily measured popularity over important but less measurable ideas.
+
 ## 6. Analyze important media
 
-When interviews or long-form media are relevant, select 3–5 high-signal items by originality, relevance, recency, historical importance, and transcript availability. Explicitly compose with `$youtube-notes` for the selected items. Apply its transcript-grounding, sponsor-exclusion, verification, and missing-caption rules.
+When interviews or long-form media are relevant, analyze the anchor source first, then select up to four additional high-signal items as time permits. Prefer fewer items analyzed well over meeting a minimum count. Select by originality, relevance, recency, historical importance, and transcript availability. Explicitly compose with `$youtube-notes` for the selected items. Apply its transcript-grounding, sponsor-exclusion, verification, and missing-caption rules.
 
 For each analyzed item capture the publication date, direct link, why it matters, main thesis, distinctive ideas, projects or events discussed, and how it changes or confirms the overall understanding. Do not include timestamps. List promising but unanalyzed items only as further viewing.
+
+At the end of each media analysis, nominate the 1–3 ideas that materially change the overall understanding. Record whether each idea is already represented in the research plan, assigned for targeted follow-up, sufficiently supported for direct synthesis, or intentionally omitted with a reason. Media analysis is incomplete until every nominated idea has a disposition; extraction alone is not enough.
 
 Exclude unavailable media. When captions are missing but creator-provided chapters, descriptions, or visible material provide enough accessible evidence, state the limited basis and avoid claims that require the unseen transcript.
 
@@ -116,7 +135,7 @@ Exclude unavailable media. When captions are missing but creator-provided chapte
 
 Use these checkpoints as guardrails:
 
-- By minute 5: establish the source map and launch initial lanes.
+- By minute 5: establish the initial source map, begin anchor extraction, and launch only lanes whose scope does not depend on unfinished anchor analysis.
 - Around minute 20: review coverage and commission only essential gap work.
 - Around minute 24: stop opening broad new lines and begin synthesis.
 - Around minute 27: shift fully to citations, uncertainty, writing, and validation.
@@ -131,6 +150,8 @@ Keep progress commentary concise and non-blocking. Report only useful milestones
 Before drafting, read [report-template.md](references/report-template.md). Use its stable core and only the adaptive modules the topic needs.
 
 Write for an informed, technically curious reader who is new to the specific topic unless the brief indicates otherwise. Favor synthesis over accumulated notes. Explain why the topic matters now, how ideas connect, what changed, what appears durable, what the reader should remember, and where to learn next.
+
+Before drafting, reconcile the confirmed brief, anchor-source coverage map, evidence packets, and planned report sections. Ensure every central anchor item has a substantive destination or an explicit omission reason. Do not let a clean narrative silently displace an important workflow, pattern, example, or idea.
 
 Use nearby inline Markdown citations for meaningful factual claims. Cite original sources, not search results or agent prose. Omit a comprehensive bibliography. Include only a curated `Further reading and viewing` list. Use occasional short direct quotes only when exact wording matters and the accessible source supports them.
 

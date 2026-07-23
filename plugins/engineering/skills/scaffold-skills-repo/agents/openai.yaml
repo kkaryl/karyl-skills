@@ -1,0 +1,7 @@
+interface:
+  display_name: "Scaffold Skills Repo"
+  short_description: "Create a dual-agent skills marketplace repo"
+  default_prompt: "Use $scaffold-skills-repo to create my personal skills marketplace repository."
+
+policy:
+  allow_implicit_invocation: false

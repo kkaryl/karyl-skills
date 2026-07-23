@@ -73,6 +73,10 @@ For people, prioritize recent projects, ideas, influence, and direct media. Incl
 Do not hand off the report until every applicable check passes:
 
 - The report directly answers the confirmed brief.
+- The report's framing, section structure, or cross-section synthesis reflects every anchor source's central ideas; a dedicated anchor section is not required.
+- Every central item from the anchor-source coverage map appears substantively or is explicitly accounted for in `Coverage and limitations`.
+- Important workflows, design patterns, and conceptual models were not displaced solely by newer job news, formal projects, repository metrics, or easier corroboration.
+- Every central idea nominated by media analysis appears substantively or is explicitly accounted for in `Coverage and limitations`.
 - Current developments receive the priority required by the dynamic recency policy.
 - The research date, effective recency window, and exact dates are present.
 - Every meaningful factual claim has nearby accessible evidence.

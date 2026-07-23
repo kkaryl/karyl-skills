@@ -32,7 +32,7 @@ def git(root: Path, *args: str) -> str:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--marketplace-root", default=".", help="Path to the main worktree")
-    parser.add_argument("--worktree-path", help="Local worktree path; defaults to a sibling skills-local")
+    parser.add_argument("--worktree-path", help="Local worktree path; defaults to a sibling <marketplace>-local")
     return parser.parse_args()
 
 

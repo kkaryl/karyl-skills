@@ -1,0 +1,34 @@
+#!/bin/sh
+# Block local-only skill commits from leaving this repository.
+
+zero_oid='0000000000000000000000000000000000000000'
+
+while read -r local_ref local_oid remote_ref remote_oid
+do
+    if [ "$local_ref" = "refs/heads/local-skills" ]; then
+        echo "Push rejected: local-skills is a local-only branch." >&2
+        exit 1
+    fi
+
+    if [ -z "$local_oid" ] || [ "$local_oid" = "$zero_oid" ]; then
+        continue
+    fi
+
+    if [ -n "$remote_oid" ] && [ "$remote_oid" != "$zero_oid" ]; then
+        revisions="$remote_oid..$local_oid"
+    else
+        revisions="$local_oid --not --remotes"
+    fi
+
+    # Intentional word splitting: revisions contains Git revision arguments only.
+    for commit in $(git rev-list $revisions)
+    do
+        trailer=$(git show -s --format='%(trailers:key=Local-Skill,valueonly)' "$commit")
+        if [ "$trailer" = "true" ]; then
+            echo "Push rejected: $remote_ref contains local-only skill commit $commit." >&2
+            exit 1
+        fi
+    done
+done
+
+exit 0
