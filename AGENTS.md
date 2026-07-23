@@ -4,6 +4,10 @@
 
 This repository contains the `karyl skills` Codex marketplace, with two independently installable plugins: `karyl-engineering` and `karyl-productivity`. Preserve the distinction between engineering work and general productivity work.
 
+## Worktrees
+
+- This repository has a separate local-only worktree at `../karyl-skills-local`.
+
 ## Choose the collection
 
 - Put software-development skills in `plugins/engineering/skills/`. This includes architecture, coding, testing, debugging, code review, infrastructure, and delivery workflows.
