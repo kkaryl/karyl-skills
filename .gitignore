@@ -36,4 +36,5 @@ coverage/
 # Local Codex state and generated caches
 .codex/
 .agents/.cache/
+.agents/skills/
 plugins/**/.cache/
