@@ -53,7 +53,7 @@ Capture three things:
 
 - **Intent:** why the user wanted to undertake the work.
 - **Process:** how the user partnered with the active coding agent, including named skills and only the decisions or discoveries that meaningfully shaped the result.
-- **Output:** the principal artifact or outcome produced.
+- **Output:** the principal artifact, capability, or achieved state and what it enables.
 
 Include a workstream only when it is user-driven and the active coding agent reported a completed outcome. Skip pending, blocked, abandoned, and unsuccessful workstreams. Mention a failed attempt only when it materially changed the successful approach.
 
@@ -61,9 +61,9 @@ Do not inspect the repository to reconstruct missing rationale or claim unreport
 
 ## 4. Assign project sections
 
-Under the date, group entries by project folder:
+Under the date, group entries by project location:
 
-- For nested work, use the exact basename of the first directory beneath the repository root that contains the work.
+- For nested work, use `<repository-root-basename>/<first-directory-basename>`, where the directory is the first one beneath the repository root that contains the work.
 - For root-level or cross-project work, use the exact repository-root basename.
 - When one workstream has distinct completed outcomes in multiple project folders, split it only when each result stands alone clearly.
 
@@ -74,12 +74,14 @@ Use project headings in order of their first appearance that day. Preserve exist
 Write each entry as one compact bullet, ideally 45-80 words:
 
 ```markdown
-- **Intent:** <why I wanted to do this> **Process:** <how I partnered with the active coding agent and what the collaboration surfaced> **Output:** <the meaningful result we produced>
+- **Intent:** <why I wanted to do this> **Process:** <how I partnered with the active coding agent and what the collaboration surfaced> **Output:** <the principal result and what it enables>
 ```
 
-Write from the user's first-person perspective when supported by the chat: “I wanted…”, “I used…”, and “I worked with <agent-name>…”. Replace `<agent-name>` with the coding agent identified in step 1. Use “we produced” when the output resulted from collaboration. Prefer the user's language and silently correct obvious spelling or grammar errors without changing meaning.
+Write `Intent` and `Process` from the user's first-person perspective when supported by the chat: “I wanted…”, “I used…”, and “I worked with <agent-name>…”. Replace `<agent-name>` with the coding agent identified in step 1. Prefer the user's language and silently correct obvious spelling or grammar errors without changing meaning.
 
-Keep `Output` to one sentence and the principal result, with at most three closely related deliverables. Incorporate a meaningful change of direction into `Process`; do not add separate `Deviation` or `Learning` labels.
+Keep `Output` result-centered and independent of who produced it. Lead with the artifact, capability, or achieved state, and use a direct present-tense statement when describing lasting behavior. Do not begin with “We produced” or repeat collaboration already captured in `Process`. Avoid prospective language such as “would” or “could” for completed work.
+
+Keep `Output` to one grammatical sentence describing one principal result, with at most three tightly related capabilities or deliverables. Incorporate a meaningful change of direction into `Process`; do not add separate `Deviation` or `Learning` labels.
 
 Exclude:
 
@@ -96,7 +98,7 @@ Remove or generalize secrets, credentials, private identifiers, financial identi
 Example:
 
 ```markdown
-- **Intent:** I wanted to build mini projects to learn agent security in depth. **Process:** I used the Grilling skill to work iteratively with <LLM>, deepening the scope and surfacing important trust, approval, and verification decisions. **Output:** We produced the first project design specification and repository scaffold.
+- **Intent:** I wanted to build mini projects to learn agent security in depth. **Process:** I used the Grilling skill to work iteratively with <LLM>, deepening the scope and surfacing important trust, approval, and verification decisions. **Output:** The first project specification defines the design and establishes its repository scaffold.
 ```
 Replace `<LLM>` with the coding agent identified in step 1.
 
@@ -109,7 +111,7 @@ Use this hierarchy:
 
 ## YYYY-MM-DD
 
-### project-folder
+### repository-name/project-folder
 
 - **Intent:** ... **Process:** ... **Output:** ...
 ```
