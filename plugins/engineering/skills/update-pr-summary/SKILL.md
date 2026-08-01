@@ -86,6 +86,7 @@ Apply these constraints:
 
 - Keep `What` to a short, direct paragraph describing the resulting behavior or capability and its scope, not the files or components changed.
 - Keep `Why` to a short, direct paragraph explaining the purpose of the `What`: why the changed behavior exists and what actual user, product, or engineering need it serves. Do not restate `What`, describe `How`, invent motivation, or substitute a generic benefit.
+- For workflow or automation changes, derive `Why` from the recurring task or user need the workflow enables. Prefer the purpose repeatedly emphasized across the complete diff over motivations inferred from secondary safeguards or the latest commit. Reuse key terms from `What` when they express the actual need; do not invent a different motivation merely to avoid textual overlap.
 - Keep `How` to one to three bullets covering only non-obvious decisions, invariants, constraints, trade-offs, or deliberate scope boundaries that help review the change.
 - Follow repository instructions such as `AGENTS.md` when selecting relevant validation to run. Include `Validation` only for behavioral scenarios or risks exercised during this invocation, and state what the evidence established. Consolidate related evidence into one to three concise bullets.
 - Do not report commands, validators, test suites, or CI as merely passing. Do not narrate GitHub check state, including that no checks are reported; reviewers can see it on the PR.
