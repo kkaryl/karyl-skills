@@ -1,0 +1,7 @@
+interface:
+  display_name: "Builder Notes"
+  short_description: "Capture your intent, agent collaboration, and outcome"
+  default_prompt: "Use $builder-notes to record the journey and output of this completed chat session."
+
+policy:
+  allow_implicit_invocation: false
