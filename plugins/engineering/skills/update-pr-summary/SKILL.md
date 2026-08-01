@@ -116,7 +116,12 @@ If no open PR exists:
 After verifying the title and body of the existing or newly created PR:
 
 1. Read the repository's available labels and their descriptions with `gh label list`.
-2. Select only existing labels clearly supported by the full PR diff and purpose. Include a collection- or area-specific label when one matches, plus a change-type label when its definition applies. Do not create, rename, delete, or remove labels, and do not choose labels from the title alone.
+2. Select only existing labels supported by the full PR diff and purpose:
+   - Add a collection- or area-specific label when one matches.
+   - Add `enhancement` when the Conventional Commit title type is `feat` and that label exists.
+   - Add `documentation` when the title type is `docs` or any changed path ends in `.md` and that label exists.
+   - Never map `fix` to `bug`. Add `bug` only when the full diff or linked issue clearly shows a correction to defective behavior, a regression, or a failing scenario. Do not add it for incremental improvements, refinements, clarifications, or merely patch-sized changes.
+   - Add any other change-type label only when its definition applies. Except for the explicit mappings above, do not choose labels from the title alone.
 3. Assign the authenticated GitHub user with `--add-assignee @me` and add the selected labels in one `gh pr edit` operation. Preserve current assignees and labels. If no existing label clearly applies, assign the user without inventing or forcing a label.
 4. Read the PR back with `gh pr view` and confirm the title, body, authenticated assignee, and selected labels were stored.
 
