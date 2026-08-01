@@ -1,13 +1,25 @@
 ---
 name: builder-notes
-description: Capture the user's builder journey from completed work in the current chat as concise Intent–Process–Output entries in the active repository's BUILDER_NOTES.md. Preserve the originating session date and how the user partnered with Codex. Use only when the user explicitly invokes `$builder-notes` by name; never invoke implicitly for changelogs, summaries, retrospectives, or ordinary project work.
+description: Capture the user's builder journey from completed work in the current chat as concise Intent–Process–Output entries in the active repository's BUILDER_NOTES.md. Identify the coding agent hosting the chat, preserve the originating session date, and record how the user partnered with that agent. Use only when the user explicitly invokes `$builder-notes` by name; never invoke implicitly for changelogs, summaries, retrospectives, or ordinary project work.
 ---
 
 # Builder Notes
 
-Record durable source material for a future build narrative. Capture why the user started, how working with Codex shaped the journey, and what meaningful result emerged. Do not write a changelog or implementation inventory.
+Record durable source material for a future build narrative. Capture why the user started, how working with the active coding agent shaped the journey, and what meaningful result emerged. Do not write a changelog or implementation inventory.
 
-## 1. Establish the destination and date
+## 1. Identify the active coding agent
+
+Before doing anything else, determine which coding agent is hosting the current chat. Prefer, in order:
+
+1. Host or session metadata that names the agent.
+2. System or developer instructions that identify the agent or product.
+3. The agent's explicit self-identification in the current chat.
+
+Use the agent's canonical product name when it is known, such as `Codex` or `Claude`. Do not infer the agent from repository files, because the same repository may be used by different agents. If the identity remains ambiguous, ask the user before writing.
+
+Treat the identified agent as the primary collaborator throughout the notes. Mention another agent only when the chat shows that it materially contributed to the completed workstream and supports its identity.
+
+## 2. Establish the destination and date
 
 Locate the active repository root. Prefer the Git root; otherwise use the current workspace root only when it is unambiguous. Do not guess across multiple repositories.
 
@@ -26,28 +38,28 @@ Date each workstream using the user's local date of the first qualifying message
 
 If no reliable originating date is available and the invocation may be delayed, ask the user before writing. Do not infer the date from file metadata or Git history.
 
-## 2. Extract the builder journey
+## 3. Extract the builder journey
 
 Read the current chat up to the invocation. Treat these as authoritative:
 
 - the user's intent, reasoning, corrections, and accepted decisions
-- named skills or workflows the user chose to use with Codex
+- named skills or workflows the user chose to use with the active coding agent
 - meaningful questions, discoveries, and changes of direction from the collaboration
-- Codex's reported completed outcomes
+- the active coding agent's reported completed outcomes
 
 Create one entry per completed logical workstream, not per prompt. Merge follow-ups and revisions that serve the same intent.
 
 Capture three things:
 
 - **Intent:** why the user wanted to undertake the work.
-- **Process:** how the user partnered with Codex, including named skills and only the decisions or discoveries that meaningfully shaped the result.
+- **Process:** how the user partnered with the active coding agent, including named skills and only the decisions or discoveries that meaningfully shaped the result.
 - **Output:** the principal artifact or outcome produced.
 
-Include a workstream only when it is user-driven and Codex reported a completed outcome. Skip pending, blocked, abandoned, and unsuccessful workstreams. Mention a failed attempt only when it materially changed the successful approach.
+Include a workstream only when it is user-driven and the active coding agent reported a completed outcome. Skip pending, blocked, abandoned, and unsuccessful workstreams. Mention a failed attempt only when it materially changed the successful approach.
 
 Do not inspect the repository to reconstruct missing rationale or claim unreported outcomes. Use repository paths only to locate the destination and determine project folders. If the chat does not support a detail, omit it.
 
-## 3. Assign project sections
+## 4. Assign project sections
 
 Under the date, group entries by project folder:
 
@@ -57,15 +69,15 @@ Under the date, group entries by project folder:
 
 Use project headings in order of their first appearance that day. Preserve existing project order. Within each project, keep bullets in the order the workstreams occurred; append later sessions after earlier ones.
 
-## 4. Write concise entries
+## 5. Write concise entries
 
 Write each entry as one compact bullet, ideally 45-80 words:
 
 ```markdown
-- **Intent:** <why I wanted to do this> **Process:** <how I partnered with Codex and what the collaboration surfaced> **Output:** <the meaningful result we produced>
+- **Intent:** <why I wanted to do this> **Process:** <how I partnered with the active coding agent and what the collaboration surfaced> **Output:** <the meaningful result we produced>
 ```
 
-Write from the user's first-person perspective when supported by the chat: “I wanted…”, “I used…”, and “I worked with Codex…”. Use “we produced” when the output resulted from collaboration. Prefer the user's language and silently correct obvious spelling or grammar errors without changing meaning.
+Write from the user's first-person perspective when supported by the chat: “I wanted…”, “I used…”, and “I worked with <agent-name>…”. Replace `<agent-name>` with the coding agent identified in step 1. Use “we produced” when the output resulted from collaboration. Prefer the user's language and silently correct obvious spelling or grammar errors without changing meaning.
 
 Keep `Output` to one sentence and the principal result, with at most three closely related deliverables. Incorporate a meaningful change of direction into `Process`; do not add separate `Deviation` or `Learning` labels.
 
@@ -84,10 +96,11 @@ Remove or generalize secrets, credentials, private identifiers, financial identi
 Example:
 
 ```markdown
-- **Intent:** I wanted to build mini projects to learn agent security in depth. **Process:** I used the Grilling skill to work iteratively with Codex, deepening the scope and surfacing important trust, approval, and verification decisions. **Output:** We produced the first project design specification and repository scaffold.
+- **Intent:** I wanted to build mini projects to learn agent security in depth. **Process:** I used the Grilling skill to work iteratively with <LLM>, deepening the scope and surfacing important trust, approval, and verification decisions. **Output:** We produced the first project design specification and repository scaffold.
 ```
+Replace `<LLM>` with the coding agent identified in step 1.
 
-## 5. Merge into the file
+## 6. Merge into the file
 
 Use this hierarchy:
 
@@ -109,6 +122,6 @@ Make the smallest surgical edit. Preserve unrelated wording, formatting, manual 
 
 If the chat contains no qualifying completed workstream, leave `BUILDER_NOTES.md` unchanged and report that no entry was added.
 
-## 6. Report completion
+## 7. Report completion
 
 State whether the file was created, updated, or left unchanged. Briefly identify the date and project sections touched, without repeating the full notes.

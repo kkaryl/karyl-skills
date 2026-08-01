@@ -1,6 +1,6 @@
 interface:
   display_name: "Builder Notes"
-  short_description: "Capture your intent, Codex collaboration, and outcome"
+  short_description: "Capture your intent, agent collaboration, and outcome"
   default_prompt: "Use $builder-notes to record the journey and output of this completed chat session."
 
 policy:
