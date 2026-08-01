@@ -1,6 +1,6 @@
 # karyl skills
 
-`karyl skills` is a personal marketplace of reusable skills for Codex. It is organized as two independently installable plugins so you can install only the collection that fits your work.
+`karyl skills` is a personal marketplace of reusable skills for Codex and Claude Code. It is organized as two independently installable plugins so you can install only the collection that fits your needs.
 
 ## Included plugins
 
@@ -9,7 +9,7 @@
 | `karyl-engineering` | Software development workflows | `init-ai`, `scaffold-skills-repo` |
 | `karyl-productivity` | Research and personal workflows | `clone-skill`, `deep-research`, `youtube-notes` |
 
-## Install
+## Install in Codex
 
 Clone this repository, then add it as a Codex marketplace:
 
@@ -24,6 +24,16 @@ Install either plugin, or both:
 ```bash
 codex plugin add karyl-engineering@karyl-skills
 codex plugin add karyl-productivity@karyl-skills
+```
+
+## Install in Claude Code
+
+Add this repository as a Claude Code marketplace, then install either plugin, or both:
+
+```bash
+claude plugin marketplace add .
+claude plugin install karyl-engineering@karyl-skills
+claude plugin install karyl-productivity@karyl-skills
 ```
 
 ## Repository layout

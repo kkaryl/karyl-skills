@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository contains the `karyl skills` Codex marketplace, with two independently installable plugins: `karyl-engineering` and `karyl-productivity`. Preserve the distinction between engineering work and general productivity work.
+This repository contains the `karyl skills` marketplace for Codex and Claude Code, with two independently installable plugins: `karyl-engineering` and `karyl-productivity`. Preserve the distinction between engineering work and general productivity work.
 
 ## Worktrees
 
@@ -26,8 +26,9 @@ This repository contains the `karyl skills` Codex marketplace, with two independ
 ## Marketplace conventions
 
 - Keep the marketplace name `karyl` and display name `karyl skills` in `.agents/plugins/marketplace.json`.
-- Keep the marketplace plugin names `karyl-engineering` and `karyl-productivity` mapped to `plugins/engineering/` and `plugins/productivity/`, respectively. These directories are plugin roots; keep each `.codex-plugin/plugin.json` present and valid.
-- Keep marketplace entries in `.agents/plugins/marketplace.json` ordered as they should appear in Codex.
+- Keep the Claude Code marketplace at `.claude-plugin/marketplace.json` alongside the Codex marketplace.
+- Keep the marketplace plugin names `karyl-engineering` and `karyl-productivity` mapped to `plugins/engineering/` and `plugins/productivity/`, respectively. These directories are plugin roots; keep each `.codex-plugin/plugin.json` and `.claude-plugin/plugin.json` present and valid.
+- Keep marketplace entries in both catalogs ordered as they should appear in their respective clients.
 - Marketplace source paths remain `./plugins/engineering` for `karyl-engineering` and `./plugins/productivity` for `karyl-productivity`.
 - Every marketplace entry must retain `policy.installation`, `policy.authentication`, and `category`.
 - Do not create another top-level plugin for a single skill unless it genuinely needs to be installed independently.
@@ -39,4 +40,5 @@ Before finishing a change:
 
 1. Validate each changed skill.
 2. Validate each affected plugin with `validate_plugin.py`.
-3. Parse `.agents/plugins/marketplace.json` as JSON and confirm every local source path exists.
+3. Run `claude plugin validate .` when Claude Code is available.
+4. Parse both marketplace files as JSON and confirm every local source path exists.
