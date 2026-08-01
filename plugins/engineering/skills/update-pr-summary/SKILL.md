@@ -1,6 +1,6 @@
 ---
 name: update-pr-summary
-description: Regenerate the current GitHub pull request title and description from the complete, latest branch diff against its actual target branch, then assign the authenticated GitHub user and add appropriate existing repository labels. Use only when the user explicitly invokes `$update-pr-summary` to replace an existing PR summary with the concise What–Why–How format and update its metadata; never append to the current description or summarize only the latest commit.
+description: Regenerate an existing GitHub pull request title and description from the complete, latest branch diff against its actual target branch, then assign the authenticated GitHub user and add appropriate existing repository labels. If the current branch has no PR, draft the same summary and propose creating one, but wait for explicit confirmation before pushing or creating it. Use only when the user explicitly invokes `$update-pr-summary`; never append to an existing description or summarize only the latest commit.
 ---
 
 # Update PR Summary
@@ -11,26 +11,33 @@ Replace the current PR title and description with a concise account of the PR as
 
 Work from the active Git repository and require an authenticated GitHub CLI session.
 
-1. Identify the current branch, its upstream, and the open PR with `gh pr view`.
-2. Read the PR number, URL, base branch, head branch, current title, and current body.
-3. Stop if the branch has no open PR or the target branch cannot be determined. Do not guess the target.
+1. Identify the current branch, its upstream, and any open PR with `gh pr view`.
+2. If an open PR exists, read its number, URL, base branch, head branch, current title, and current body.
+3. If no open PR exists, enter creation-proposal mode. Resolve the proposed base from an explicit user choice, the branch's configured `gh-merge-base`, or the repository's default branch, in that order. State the proposed base and ask the user if the target remains ambiguous; do not guess.
 
-Treat the existing body as context only. It may contain useful issue or validation information, but it is not the structure to preserve.
+When a body exists, treat it as context only. It may contain useful issue or validation information, but it is not the structure to preserve.
 
-## 2. Read the remote PR state
+## 2. Resolve the comparison state
 
-Treat the PR's remote base and head as the source of truth. The local working tree may be dirty and the current branch may contain unpushed commits; neither is part of the published PR.
+For an existing PR, treat its remote base and head as the source of truth. The local working tree may be dirty and the current branch may contain unpushed commits; neither is part of the published PR.
 
 1. Fetch the latest target branch and PR head into refs that do not update or check out the current branch. Prefer GitHub's pull-request head ref; use `gh pr diff` or the GitHub API when that ref is unavailable.
 2. Confirm the fetched base and head belong to the resolved PR.
 3. Use those remote refs for all commit and diff inspection. Never use local `HEAD` unless its commit exactly matches the remote PR head.
 4. Stop if the remote base or head cannot be resolved. Do not substitute stale local refs.
 
-Never stash, discard, commit, push, pull, merge, rebase, or check out user work.
+For a proposed PR, fetch the proposed base without updating or checking out the current branch, then identify the exact committed head to summarize:
+
+1. Use the published branch head when it matches local `HEAD`.
+2. If local `HEAD` contains committed, unpushed work, use it only for the proposal and disclose that creating the PR requires pushing those commits.
+3. Stop and ask the user how to proceed if local and remote branch histories have diverged. Never force-push or choose one history implicitly.
+4. Exclude uncommitted working-tree changes and stop if the proposed branch contains no commits relative to the base.
+
+Never stash, discard, commit, pull, merge, rebase, or check out user work. Never push unless the user explicitly confirms a creation proposal that identifies the remote and branch to push.
 
 ## 3. Understand the whole PR
 
-Compare the remote target ref to the remote PR head with a three-dot diff. Inspect:
+Compare the resolved target ref to the exact head being summarized with a three-dot diff. Inspect:
 
 - the full commit range from target to head
 - the diff summary and changed areas
@@ -90,19 +97,26 @@ Apply these constraints:
 
 Delete any sentence that merely repeats another sentence, renames the section, or does not help the reviewer judge the change.
 
-## 5. Replace and verify
+## 5. Update or propose creation
 
 Create the title and body from scratch. Do not append, patch individual sections, preserve stale prose by default, or post the summary as a comment.
 
-Update both PR fields in one `gh pr edit` operation using a temporary body file. Keep the title out of the body. Then read the PR back with `gh pr view` and confirm the stored title and body match the generated values.
+If an open PR exists, update both fields in one `gh pr edit` operation using a temporary body file. Keep the title out of the body. Then read the PR back with `gh pr view` and confirm the stored title and body match the generated values.
+
+If no open PR exists:
+
+1. Present a creation proposal containing the base, head, generated title, full generated body, and whether a push is required.
+2. Ask for explicit confirmation to create the PR. If a push is required, identify the remote and branch in the confirmation request. Do not push or create the PR before the user confirms.
+3. After confirmation, perform only the disclosed push when required, then create the PR with explicit `--base`, `--head`, `--title`, and `--body-file` values. Do not use commit autofill in place of the generated summary.
+4. Read the new PR back with `gh pr view` and confirm the stored base, head, title, and body match the proposal.
 
 ## 6. Assign and label
 
-After verifying the title and body:
+After verifying the title and body of the existing or newly created PR:
 
 1. Read the repository's available labels and their descriptions with `gh label list`.
 2. Select only existing labels clearly supported by the full PR diff and purpose. Include a collection- or area-specific label when one matches, plus a change-type label when its definition applies. Do not create, rename, delete, or remove labels, and do not choose labels from the title alone.
 3. Assign the authenticated GitHub user with `--add-assignee @me` and add the selected labels in one `gh pr edit` operation. Preserve current assignees and labels. If no existing label clearly applies, assign the user without inventing or forcing a label.
 4. Read the PR back with `gh pr view` and confirm the title, body, authenticated assignee, and selected labels were stored.
 
-Report the updated title, PR URL, assignee, and labels without repeating the full description.
+Report whether the PR was updated or created, followed by its title, URL, assignee, and labels without repeating the full description.
