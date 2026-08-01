@@ -52,12 +52,22 @@ Base the summary on the entire PR, not the latest commit, most recently edited f
 Generate a Conventional Commit title:
 
 ```text
+<type>: <concise imperative description>
 <type>(<scope>): <concise imperative description>
 ```
 
-Choose the type and scope from the PR's dominant purpose. Use standard types such as `feat`, `fix`, `refactor`, `docs`, `test`, `build`, `ci`, `perf`, or `chore`. Keep the title specific, lower-case after the colon, free of a trailing period, and at most 72 characters.
+Choose the type from the PR's overall purpose. Use a scope only when it adds information that is not already clear from the repository or subject; never force a generic or redundant scope. Use standard types such as `feat`, `fix`, `refactor`, `docs`, `test`, `build`, `ci`, `perf`, or `chore`.
 
-Apply a reviewer-novelty test before drafting. Keep only information that synthesizes purpose, behavioral impact, relationships between changes, non-obvious decisions, scope boundaries, trade-offs, or risk coverage. Remove anything directly available from the PR title, metadata, changed-files view, commit list, or checks. A fact visible in the diff belongs in the summary only when interpreting it saves the reviewer meaningful reconstruction work.
+Match the title's abstraction level to the shape of the complete change:
+
+- For one cohesive behavioral change, name the resulting behavior.
+- For multiple peer changes, name the affected capabilities or components and their shared action. Do not force one change to appear dominant.
+- Prefer canonical names that reviewers can recognize and search over compressed synonyms or invented umbrella concepts.
+- Treat specificity as accurately distinguishing the whole PR, not maximizing behavioral detail. A simple verb such as `improve` is appropriate when named capabilities provide the specificity and a narrower verb would overfit one peer change.
+
+Reject a title that omits a peer change, disproportionately emphasizes a secondary change, or requires the description to explain what its nouns mean. Keep the title lower-case after the colon, free of a trailing period, and at most 72 characters.
+
+Apply a reviewer-novelty test to the body, not the title. Keep only information that synthesizes purpose, behavioral impact, relationships between changes, non-obvious decisions, scope boundaries, trade-offs, or risk coverage. Remove anything directly available from the PR title, metadata, changed-files view, commit list, or checks. A fact visible in the diff belongs in the summary only when interpreting it saves the reviewer meaningful reconstruction work.
 
 Use this body structure. Omit `Validation` entirely when there is no reviewer-relevant behavioral evidence beyond the PR's visible checks:
 
