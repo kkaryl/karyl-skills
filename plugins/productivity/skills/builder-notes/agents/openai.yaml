@@ -1,0 +1,7 @@
+interface:
+  display_name: "Builder Notes"
+  short_description: "Capture completed work as concise builder notes"
+  default_prompt: "Use $builder-notes to record this completed work session."
+
+policy:
+  allow_implicit_invocation: false
