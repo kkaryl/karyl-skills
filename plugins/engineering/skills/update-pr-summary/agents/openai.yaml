@@ -1,0 +1,7 @@
+interface:
+  display_name: "Update PR Summary"
+  short_description: "Regenerate PR summaries and update metadata"
+  default_prompt: "Use $update-pr-summary to regenerate the current pull request title and description from the full branch diff, assign me, and apply appropriate existing labels."
+
+policy:
+  allow_implicit_invocation: false
