@@ -1,13 +1,13 @@
 ---
 name: builder-notes
-description: Capture completed, user-driven work from the current chat as concise input-to-outcome entries in the active repository's BUILDER_NOTES.md. Use only when the user explicitly invokes `$builder-notes` by name at the end of a work session. Never invoke implicitly for changelogs, summaries, retrospectives, or ordinary project work.
+description: Capture the user's builder journey from completed work in the current chat as concise Intent–Process–Output entries in the active repository's BUILDER_NOTES.md. Preserve the originating session date and how the user partnered with Codex. Use only when the user explicitly invokes `$builder-notes` by name; never invoke implicitly for changelogs, summaries, retrospectives, or ordinary project work.
 ---
 
 # Builder Notes
 
-Record durable source material for a future build narrative. Treat the current chat as the authority for intent, decisions, iteration, and reported outcomes.
+Record durable source material for a future build narrative. Capture why the user started, how working with Codex shaped the journey, and what meaningful result emerged. Do not write a changelog or implementation inventory.
 
-## 1. Establish the destination
+## 1. Establish the destination and date
 
 Locate the active repository root. Prefer the Git root; otherwise use the current workspace root only when it is unambiguous. Do not guess across multiple repositories.
 
@@ -17,24 +17,35 @@ Use `<repository-root>/BUILDER_NOTES.md`. On first creation, start with only:
 # Builder Notes
 ```
 
-Use the user's local calendar date in `YYYY-MM-DD` form.
+Date each workstream using the user's local date of the first qualifying message that began it, not the date `$builder-notes` was invoked or the file was updated. Prefer, in order:
 
-## 2. Extract completed workstreams
+1. Chat or turn timestamps exposed by the host.
+2. Dated environment context associated with the first qualifying request.
+3. A date explicitly stated by the user.
+4. The current local date only when the skill is invoked immediately at the end of the same uninterrupted session.
+
+If no reliable originating date is available and the invocation may be delayed, ask the user before writing. Do not infer the date from file metadata or Git history.
+
+## 2. Extract the builder journey
 
 Read the current chat up to the invocation. Treat these as authoritative:
 
-- the user's prompts, reasoning, corrections, and accepted decisions
-- the LLM's descriptions of its process
-- the LLM's completion summaries of what it produced
-- meaningful changes of direction caused by user-LLM iteration
+- the user's intent, reasoning, corrections, and accepted decisions
+- named skills or workflows the user chose to use with Codex
+- meaningful questions, discoveries, and changes of direction from the collaboration
+- Codex's reported completed outcomes
 
 Create one entry per completed logical workstream, not per prompt. Merge follow-ups and revisions that serve the same intent.
 
-Include a workstream only when it is user-driven and the LLM reported a completed outcome. Skip pending, blocked, abandoned, and unsuccessful workstreams. A failed attempt may appear only as a deviation within work that ultimately completed.
+Capture three things:
+
+- **Intent:** why the user wanted to undertake the work.
+- **Process:** how the user partnered with Codex, including named skills and only the decisions or discoveries that meaningfully shaped the result.
+- **Output:** the principal artifact or outcome produced.
+
+Include a workstream only when it is user-driven and Codex reported a completed outcome. Skip pending, blocked, abandoned, and unsuccessful workstreams. Mention a failed attempt only when it materially changed the successful approach.
 
 Do not inspect the repository to reconstruct missing rationale or claim unreported outcomes. Use repository paths only to locate the destination and determine project folders. If the chat does not support a detail, omit it.
-
-Exclude routine tool calls, implementation minutiae, transient errors, and suggestions the user neither accepted nor acted on.
 
 ## 3. Assign project sections
 
@@ -48,17 +59,33 @@ Use project headings in order of their first appearance that day. Preserve exist
 
 ## 4. Write concise entries
 
-Write each entry as one compact bullet, ideally 60-100 words:
+Write each entry as one compact bullet, ideally 45-80 words:
 
 ```markdown
-- **Input:** <the user's intent or deciding thought> **Process:** <the accepted approach and important iteration> **Deviation:** <material change of direction, when present> **Outcome:** <what the LLM reported producing> **Learning:** <supported takeaway, when present>
+- **Intent:** <why I wanted to do this> **Process:** <how I partnered with Codex and what the collaboration surfaced> **Output:** <the meaningful result we produced>
 ```
 
-Always include `Input`, `Process`, and `Outcome`. Include `Deviation` only for a material change in direction. Include `Learning` only when supported by the user's decisions, the accepted iteration path, or the LLM's completion summary.
+Write from the user's first-person perspective when supported by the chat: “I wanted…”, “I used…”, and “I worked with Codex…”. Use “we produced” when the output resulted from collaboration. Prefer the user's language and silently correct obvious spelling or grammar errors without changing meaning.
 
-Keep the emphasis on the user's thought process and decisions. Never invent motivation, reflection, hindsight, learning, or completion claims.
+Keep `Output` to one sentence and the principal result, with at most three closely related deliverables. Incorporate a meaningful change of direction into `Process`; do not add separate `Deviation` or `Learning` labels.
+
+Exclude:
+
+- file inventories, repository boilerplate, and implementation minutiae
+- routine tool calls, validation commands, Git operations, symlinks, and transient errors
+- long catalogs of technical decisions that do not explain the user's journey
+- adjectives such as “production-grade”, “Staff-level”, or “decision-complete” unless central to the user's stated intent
+- suggestions the user neither accepted nor acted on
+
+Never invent motivation, reflection, hindsight, learning, or completion claims.
 
 Remove or generalize secrets, credentials, private identifiers, financial identifiers, and raw sensitive data. Do not copy sensitive values even when they appeared in the chat.
+
+Example:
+
+```markdown
+- **Intent:** I wanted to build mini projects to learn agent security in depth. **Process:** I used the Grilling skill to work iteratively with Codex, deepening the scope and surfacing important trust, approval, and verification decisions. **Output:** We produced the first project design specification and repository scaffold.
+```
 
 ## 5. Merge into the file
 
@@ -71,12 +98,12 @@ Use this hierarchy:
 
 ### project-folder
 
-- **Input:** ... **Process:** ... **Outcome:** ...
+- **Intent:** ... **Process:** ... **Output:** ...
 ```
 
 Keep date sections reverse chronological. When adding a new date, place it among existing `## YYYY-MM-DD` headings in descending order without rewriting other dates.
 
-Before adding a bullet, compare it semantically with bullets under the same date and project. Treat matching intent and outcome as the same workstream even when phrasing differs. Enrich or correct that bullet in place and keep its original position. Do not merge distinct workstreams merely because they touch the same feature.
+Before adding a bullet, compare it semantically with bullets under the same date and project. Treat matching intent and output as the same workstream even when phrasing differs. Enrich or correct that bullet in place and keep its original position. Do not merge distinct workstreams merely because they touch the same feature.
 
 Make the smallest surgical edit. Preserve unrelated wording, formatting, manual edits, dates, project sections, and bullets. Never normalize or rewrite older content for style consistency.
 
