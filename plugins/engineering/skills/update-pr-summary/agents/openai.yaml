@@ -1,0 +1,7 @@
+interface:
+  display_name: "Update PR Summary"
+  short_description: "Update or propose creating PR summaries"
+  default_prompt: "Use $update-pr-summary to update the current pull request summary and metadata, or propose creating a PR with that summary when none exists."
+
+policy:
+  allow_implicit_invocation: false
