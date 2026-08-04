@@ -5,7 +5,7 @@ description: Capture the user's builder journey from completed work in the curre
 
 # Builder Notes
 
-Record durable source material for a future build narrative. Capture why the user started, how working with the active coding agent shaped the journey, and what meaningful result emerged. Do not write a changelog or implementation inventory.
+Record durable source material for a future build narrative. Capture why the user started, how working with the active coding agent shaped the journey, and what meaningful result emerged. Write with grounded confidence: let curiosity, ownership, and judgment emerge from concrete choices in the chat. Do not write a changelog, implementation inventory, role label, or self-congratulatory retrospective.
 
 ## 1. Identify the active coding agent
 
@@ -71,11 +71,13 @@ Use project headings in order of their first appearance that day. Preserve exist
 
 ## 5. Write concise entries
 
-Write each entry as one compact bullet, ideally 45-80 words:
+Write each entry as one compact, evidence-grounded bullet, ideally 45-80 words:
 
 ```markdown
-- **Intent:** <why I wanted to do this> **Process:** <how I partnered with the active coding agent and what the collaboration surfaced> **Output:** <the principal result and what it enables>
+- **Intent:** <why this mattered or was worth exploring> **Process:** <how I used the active coding agent to test, decide, or refine the work> **Output:** <the principal result and what it now makes possible>
 ```
+
+Use active, specific prose that shows the user as a builder pursuing a real question or making a deliberate choice. Prefer concrete verbs such as “explored,” “tested,” “decided,” “refined,” and “extended” when supported by the chat. Let confidence come from specificity; do not invent certainty, motivation, learning, or seniority.
 
 Write `Intent` and `Process` from the user's first-person perspective when supported by the chat: “I wanted…”, “I used…”, and “I worked with <agent-name>…”. Replace `<agent-name>` with the coding agent identified in step 1. Prefer the user's language and silently correct obvious spelling or grammar errors without changing meaning.
 
@@ -98,7 +100,7 @@ Remove or generalize secrets, credentials, private identifiers, financial identi
 Example:
 
 ```markdown
-- **Intent:** I wanted to build mini projects to learn agent security in depth. **Process:** I used the Grilling skill to work iteratively with <LLM>, deepening the scope and surfacing important trust, approval, and verification decisions. **Output:** The first project specification defines the design and establishes its repository scaffold.
+- **Intent:** I wanted to build a concrete project to deepen my understanding of agent security. **Process:** I used the Grilling skill to turn broad security questions into explicit decisions about trust, approval, and verification. **Output:** The first project specification defines the design and establishes its repository scaffold.
 ```
 Replace `<LLM>` with the coding agent identified in step 1.
 
